@@ -66,6 +66,17 @@ def manage_location(msg_data):
 """
 
 
+@decorator.catch_exceptions
+def check_antena(ant):
+    if ant == '01':
+        return 1
+    elif ant == '02':
+        return 2
+    elif ant == '04':
+        return 3
+    elif ant == '08':
+        return 4
+
 
 @decorator.catch_exceptions
 def manage_data(msg):
@@ -88,6 +99,7 @@ def process_epc_frame(data):
     cmd = data[4:6]
     status = data[6:8]
     ant = data[8:10]
+    antenna = check_antena(ant)
     num = data[10:12]
     epc_length = data[12:14]
     # epc_final_bit = 14 + (epc_length * 2)
@@ -99,7 +111,7 @@ def process_epc_frame(data):
     time = data[-8:]
     timestamp = common.convert_hex_to_int(time)
 
-    json_msg = {'length': length, 'reader': adr, 'cmd': cmd, 'status': status, 'antenna': ant, 'num': num, 'epc': epc,
+    json_msg = {'length': length, 'reader': adr, 'cmd': cmd, 'status': status, 'antenna': antenna, 'num': num, 'epc': epc,
                 'rssi': rssi, 'crc16': crc16, 'timestamp': timestamp}
     logger_msg.info('-->[TAG READ] %s', json_msg)
     # msg = compose_location_msg(json_msg=json_msg)
