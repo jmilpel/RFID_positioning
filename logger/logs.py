@@ -4,7 +4,6 @@ if True:
     logger_main = LoggerClass.LoggerClass('main')
     logger_msg = LoggerClass.LoggerClass('msg')
     logger_rabbit = LoggerClass.LoggerClass('rabbit')
-    logger_errors = LoggerClass.LoggerClass('errors')
     # logger_mongo = LoggerClass.LoggerClass('mongo')
 
 
