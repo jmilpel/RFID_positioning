@@ -17,10 +17,12 @@ logger_msg = logs.get_logger_msg()
 
 def workflow(channel, method_frame, header_frame, body):
     try:
-        # channel.basic_ack(delivery_tag=method_frame.delivery_tag)
+        channel.basic_ack(delivery_tag=method_frame.delivery_tag)
         msg = body.decode()
         logger_main.info(f'Mensaje recibido: {msg}')
-        position.manage_data(msg=body)  # msg=decode(body)
+        # print(msg)
+        position.manage_data(msg=msg)  # msg=decode(body)
+        # time.sleep(2)
     except Exception as error:
         logger_main.error('Error managing msg %s: %s', str(body), str(error))
 
@@ -37,8 +39,8 @@ def queue_consumer(broker):
             connection = pika.BlockingConnection(parameters=parameters)
             channel = connection.channel()
             logger_main.info('[%d] Successfully connected!!! Start messages consumption...', pid)
-            channel.queue_declare(queue=broker['queue'], durable=True)
-            channel.basic_consume(queue=broker['queue'], on_message_callback=workflow)
+            # channel.queue_declare(exchange, durable=True)
+            channel.basic_consume(exchange, on_message_callback=workflow)
             try:
                 channel.start_consuming()
             except pika.exceptions.AMQPChannelError as error:

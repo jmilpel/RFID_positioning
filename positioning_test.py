@@ -2,6 +2,7 @@ import pika
 from config import config
 from logger import logs
 from core import position
+import time
 
 
 BROKER = config.BROKER
@@ -19,6 +20,7 @@ def procesar_mensaje(ch, method, properties, body):
     logger_main.info(f'Mensaje recibido: {msg}')
     # Puedes agregar más lógica para procesar el mensaje según sea necesario
     position.manage_data(msg)
+    time.sleep(0.2)
 
 
 logger_main.info("Starting broker consumer processes...")
