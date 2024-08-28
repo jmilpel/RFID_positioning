@@ -92,4 +92,5 @@ def get_seconds_from_midnight(timestamp):
 
 @decorator.catch_exceptions
 def int_rssi(rssi):
+    """ Returns the int RSSI value """
     return convert_str_to_hex_to_int(rssi) - 130
