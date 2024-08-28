@@ -10,10 +10,7 @@ BROKER = CONFIG['broker']
 WORKER = CONFIG['worker']
 RABBIT_WSS = CONFIG['rabbit_wss']
 RABBIT_REPORT = CONFIG['rabbit_report']
-TRACKING = CONFIG['tracking']
 # MONGO = CONFIG['mongo']
-# WOXU = CONFIG['woxu']
-
 
 LOG_FOLDER = LOG['folder']
 LOG_DAYS_FOR_ROTATE = LOG['days_for_rotate']

@@ -5,7 +5,6 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 from config import config
 from logger import logs
-from ujson import decode
 from core import position
 
 
@@ -19,8 +18,7 @@ def workflow(channel, method_frame, header_frame, body):
     try:
         channel.basic_ack(delivery_tag=method_frame.delivery_tag)
         msg = body.decode()
-        logger_main.info(f'Mensaje recibido: {msg}')
-        # print(msg)
+        logger_main.info(f'Received message: {msg}')
         position.manage_data(msg=msg)  # msg=decode(body)
         # time.sleep(2)
     except Exception as error:
