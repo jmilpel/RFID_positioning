@@ -3,6 +3,7 @@ import pytz
 from utils import decorator
 import time
 import binascii
+import codecs
 # import crc16
 
 
@@ -67,6 +68,11 @@ def convert_str_to_hex_to_int(string):
 @decorator.catch_exceptions
 def convert_hex_to_int(hex_value):
     return int(hex_value, 16)
+
+
+@decorator.catch_exceptions
+def convert_hex_to_str(hex_str):
+    return codecs.decode(hex_str, "hex").decode()
 
 
 @decorator.catch_exceptions

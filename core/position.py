@@ -78,29 +78,64 @@ def manage_data(msg):
 
 
 @decorator.catch_exceptions
-def process_epc_frame(data):
-    """ Process the dataframe to create its json and process it """
-    length = data[0:2]
-    adr = data[2:4]
+def process_error(msg):
+    """ Detect the type of frame """
+    # length = msg[0:2]
+    # adr = msg[2:4]
+    # cmd = msg[4:6]
+    # status = msg[6:8]
+    error_code = msg[8:10]
+    if error_code == '00':
+        print("Other errors")
+    elif error_code == '03':
+        print("Memory full, or illegal PC value")
+    elif error_code == '04':
+        print("Memory locked")
+    elif error_code == '0b':
+        print("Insufficient power supply")
+    elif error_code == '0f':
+        print("Undefined error")
+
+
+@decorator.catch_exceptions
+def process_inventory_frame(data):
+    """ Process inventory dataframe to create its json and process it """
+    # length = data[0:2]
+    # adr = data[2:4]
     cmd = data[4:6]
     status = data[6:8]
-    ant = data[8:10]
-    antenna = check_antenna(ant)
-    num = data[10:12]
+    # ant = data[8:10]
+    ant = check_antenna(data[8:10])
+    # num = data[10:12]
     epc_length = data[12:14]
     # epc_final_bit = 14 + (epc_length * 2)
     epc_int_length = common.convert_str_to_hex_to_int(epc_length)
     epc = data[14:14 + (epc_int_length * 2)]
-    rssi_hex = data[-14:-12]
+    rssi_hex = data[-22:-20]
     rssi = common.int_rssi(rssi_hex)
-    lsb_crc16 = data[-12:-10]
-    msb_crc16 = data[-10:-8]
+    # lsb_crc16 = data[-20:-18]
+    # msb_crc16 = data[-18:-16]
+    port_hex = data[-16:-8]
     time = data[-8:]
+    client = common.convert_hex_to_str(port_hex)
     timestamp = common.convert_hex_to_int(time)
-    json_msg = {'length': length, 'reader': adr, 'cmd': cmd, 'status': status, 'antenna': antenna, 'num': num,
-                'epc': epc, 'rssi': rssi, 'lsb-crc16': lsb_crc16, 'msb-crc16': msb_crc16, 'timestamp': timestamp}
+    json_msg = {'client': client, 'cmd': cmd, 'status': status, 'antenna': ant, 'epc': epc, 'rssi': rssi,
+                'timestamp': timestamp}
+    """json_msg = {'len': length, 'client': client, 'adr': adr, 'cmd': cmd, 'status': status, 'antenna': ant, 'num': num,
+                'epc': epc, 'rssi': rssi, 'lsb-crc16': lsb_crc16, 'msb-crc16': msb_crc16, 'timestamp': timestamp}"""
     logger_msg.info('-->[TAG READ] %s', json_msg)
     process_msg(json_msg=json_msg)
     # msg = compose_location_msg(json_msg=json_msg)
     # publish_msg(publisher=publisher, msg=msg)
+
+
+@decorator.catch_exceptions
+def process_epc_frame(data):
+    """ Read the cmd and status and classify the frames """
+    # cmd = data[4:6]
+    status = data[6:8]
+    if status == '03':
+        process_inventory_frame(data)
+    elif status == 'fc':
+        process_error(data)
     pass

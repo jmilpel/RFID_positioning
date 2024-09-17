@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feebaf0b-0405-4729-9278-1498f92c96b6" name="Changes" comment="positioning working">
+    <list default="true" id="feebaf0b-0405-4729-9278-1498f92c96b6" name="Changes" comment="RFID Positioning v1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/position.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/position.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/positioning_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/positioning_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/common.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
     &quot;Python.positioning_test.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/JRSS/PycharmProjects/RFID/RFID_positioning&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JRSS/PycharmProjects/RFID/RFID_gateway&quot;
   }
 }</component>
   <component name="RunManager" selected="Python.positioning">
@@ -155,52 +155,69 @@
       <option name="project" value="LOCAL" />
       <updated>1723032552383</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="RFID Positioning v1.0">
+      <option name="closed" value="true" />
+      <created>1724845668792</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724845668792</updated>
+    </task>
+    <task id="LOCAL-00007" summary="RFID Positioning v1.0">
+      <option name="closed" value="true" />
+      <created>1724845713518</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1724845713518</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="positioning_test working" />
     <MESSAGE value="positioning working" />
-    <option name="LAST_COMMIT_MESSAGE" value="positioning working" />
+    <MESSAGE value="RFID Positioning v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="RFID Positioning v1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/common.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/common.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/common.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="95" />
+          <url>file://$PROJECT_DIR$/core/position.py</url>
+          <line>132</line>
+          <option name="timeStamp" value="186" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/core/position.py</url>
-          <line>28</line>
-          <option name="timeStamp" value="168" />
+          <line>133</line>
+          <option name="timeStamp" value="187" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/core/position.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="169" />
+          <line>134</line>
+          <option name="timeStamp" value="188" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/core/position.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="170" />
+          <line>135</line>
+          <option name="timeStamp" value="189" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/core/position.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="171" />
+          <line>136</line>
+          <option name="timeStamp" value="190" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/core/position.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/core/position.py</url>
+          <line>138</line>
+          <option name="timeStamp" value="192" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
