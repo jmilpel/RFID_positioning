@@ -33,8 +33,11 @@ def check_last_inventory(json_last_inventory, json_msg, tag_epc):
         update_last_inventory(tag_epc, json_msg)
     # When timestamp is the same but the rssi is better we update the inventory (reconsider this condition)
     elif json_msg['timestamp'] == json_last_inventory['timestamp']:
-        if json_msg['rssi'] > json_last_inventory['rssi']:
+        if json_msg['client'] != json_last_inventory['client']:
             update_last_inventory(tag_epc, json_msg)
+        else:
+            if json_msg['rssi'] < json_last_inventory['rssi']:
+                update_last_inventory(tag_epc, json_msg)
         """else:
             print('Duplicated')"""
 
@@ -121,8 +124,8 @@ def process_inventory_frame(data):
     timestamp = common.convert_hex_to_int(time)
     json_msg = {'client': client, 'cmd': cmd, 'status': status, 'antenna': ant, 'epc': epc, 'rssi': rssi,
                 'timestamp': timestamp}
-    """json_msg = {'len': length, 'client': client, 'adr': adr, 'cmd': cmd, 'status': status, 'antenna': ant, 'num': num,
-                'epc': epc, 'rssi': rssi, 'lsb-crc16': lsb_crc16, 'msb-crc16': msb_crc16, 'timestamp': timestamp}"""
+    # json_msg = {'len': length, 'client': client, 'adr': adr, 'cmd': cmd, 'status': status, 'antenna': ant, 'num': num,
+    #            'epc': epc, 'rssi': rssi, 'lsb-crc16': lsb_crc16, 'msb-crc16': msb_crc16, 'timestamp': timestamp}"""
     logger_msg.info('-->[TAG READ] %s', json_msg)
     process_msg(json_msg=json_msg)
     # msg = compose_location_msg(json_msg=json_msg)
